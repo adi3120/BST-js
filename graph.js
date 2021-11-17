@@ -30,16 +30,21 @@ class Node {
 
 function makeAdjList(nodelist) {
     let adjList = new Array(nodelist.length);
-    for (let i = 0; i < adjList.length; i++) {
-        adjList[i] = new Node(nodelist[i]);
-    }
+    let n = 0;
+    let conArr = [1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1];
     for (let i = 0; i < nodelist.length; i++) {
-        if (i != j) {
-            let connected = window.prompt(`does ${nodelist[i]} points to ${nodelist[j]} ?`);
-            if (connected) {
-                adjList[i].push(j);
+        adjList[i] = new Node(nodelist[i]);
+        for (let j = 0; j < nodelist.length; j++) {
+            if (i != j) {
+                let connected = conArr[n];
+                n++;
+                if (connected) {
+                    adjList[i].push(j);
+                }
             }
         }
     }
     return adjList;
 }
+
+makeAdjList([0, 1, 2, 3, 4]);
