@@ -100,11 +100,13 @@ addEdge(8, [1, 4, 5, 6, 7]);
 function bfs(edge) {
     let currEdge = edge;
     let visited = [];
-    visited.push(edge);
-    for (let i = edge; i < adjMat.length; i++) {
-        currEdge = i;
+    visited.push(currEdge);
+    for (let i = 0; i < visited.length; i++) {
+        currEdge = visited[i];
+        if (!visited.includes(currEdge))
+            visited.push(currEdge);
         for (let j = 0; j < adjMat.length; j++) {
-            if (visited.indexOf(j) == -1) {
+            if (!visited.includes(j)) {
                 if (adjMat[currEdge][j]) {
                     visited.push(j);
                 }
@@ -114,4 +116,6 @@ function bfs(edge) {
     console.log(visited);
 }
 
-bfs(1);
+for (let i = 1; i < 9; i++) {
+    bfs(i);
+}
