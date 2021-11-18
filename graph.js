@@ -70,3 +70,48 @@ addEdge(2, 3);
 addEdge(3, 4);
 
 //////---------------///////////////////////
+
+//////BFS BEST WAy////////////////////////////////////////////////
+
+let adjMat = [];
+for (let i = 0; i < 9; i++) {
+    adjMat[i] = new Array();
+}
+
+
+for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+        adjMat[i][j] = 0;
+    }
+}
+
+function addEdge(edge, adjEdgeList) {
+    for (let i = 0; i < adjEdgeList.length; i++) {
+        adjMat[edge][adjEdgeList[i]] = 1;
+        adjMat[adjEdgeList[i]][edge] = 1;
+    }
+}
+
+addEdge(1, [2, 3, 8]);
+addEdge(2, [4, 5]);
+addEdge(3, [6, 7]);
+addEdge(8, [1, 4, 5, 6, 7]);
+
+function bfs(edge) {
+    let currEdge = edge;
+    let visited = [];
+    visited.push(edge);
+    for (let i = edge; i < adjMat.length; i++) {
+        currEdge = i;
+        for (let j = 0; j < adjMat.length; j++) {
+            if (visited.indexOf(j) == -1) {
+                if (adjMat[currEdge][j]) {
+                    visited.push(j);
+                }
+            }
+        }
+    }
+    console.log(visited);
+}
+
+bfs(1);
