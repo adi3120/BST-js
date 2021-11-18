@@ -85,10 +85,10 @@ for (let i = 0; i < 9; i++) {
     }
 }
 
-function addEdge(edge, adjEdgeList) {
+function addEdge(vertex, adjEdgeList) {
     for (let i = 0; i < adjEdgeList.length; i++) {
-        adjMat[edge][adjEdgeList[i]] = 1;
-        adjMat[adjEdgeList[i]][edge] = 1;
+        adjMat[vertex][adjEdgeList[i]] = 1;
+        adjMat[adjEdgeList[i]][vertex] = 1;
     }
 }
 
@@ -97,17 +97,17 @@ addEdge(2, [4, 5]);
 addEdge(3, [6, 7]);
 addEdge(8, [1, 4, 5, 6, 7]);
 
-function bfs(edge) {
-    let currEdge = edge;
+function bfs(vertex) {
+    let currVertex = vertex;
     let visited = [];
-    visited.push(currEdge);
+    visited.push(currVertex);
     for (let i = 0; i < visited.length; i++) {
-        currEdge = visited[i];
-        if (!visited.includes(currEdge))
-            visited.push(currEdge);
+        currVertex = visited[i];
+        if (!visited.includes(currVertex))
+            visited.push(currVertex);
         for (let j = 0; j < adjMat.length; j++) {
             if (!visited.includes(j)) {
-                if (adjMat[currEdge][j]) {
+                if (adjMat[currVertex][j]) {
                     visited.push(j);
                 }
             }
@@ -118,4 +118,9 @@ function bfs(edge) {
 
 for (let i = 1; i < 9; i++) {
     bfs(i);
+}
+
+
+function dfs(vertex) {
+
 }
